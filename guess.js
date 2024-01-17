@@ -42,6 +42,15 @@ const generateInput = () => {
     ".disabled-inputs input"
   );
   inputsInDisbaledDiv.forEach((input) => (input.disabled = true));
+
+  //add Event Listener To Input
+  const inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    //Convert Input To UpperCase
+    input.addEventListener("input", function () {
+      this.value = this.value.toUpperCase();
+    });
+  });
 };
 
 window.onload = () => {
