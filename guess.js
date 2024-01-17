@@ -45,10 +45,31 @@ const generateInput = () => {
 
   //add Event Listener To Input
   const inputs = document.querySelectorAll("input");
-  inputs.forEach((input) => {
+  inputs.forEach((input, index) => {
     //Convert Input To UpperCase
+
     input.addEventListener("input", function () {
       this.value = this.value.toUpperCase();
+      //console.log(index);
+      const nextInput = inputs[index + 1];
+      if (nextInput) nextInput.focus();
+    });
+
+    input.addEventListener("keydown", function (event) {
+      console.log(event);
+      const currentIndex = Array.from(inputs).indexOf(event.target); // or this
+
+      //   console.log(currentIndex);
+
+      if (event.key === "ArrowRight") {
+        const nextInput = currentIndex + 1;
+        if (nextInput < inputs.length) inputs[nextInput].focus();
+      }
+
+      if (event.key === "ArrowLeft") {
+        const prevInput = currentIndex - 1;
+        if (prevInput >= 0) inputs[prevInput].focus();
+      }
     });
   });
 };

@@ -25,7 +25,6 @@ h1 {
   margin: 20px auto;
   display: flex;
   align-items: flex-start;
-
   justify-content: space-between;
 
   .game-area {
