@@ -25,10 +25,56 @@ h1 {
   margin: 20px auto;
   display: flex;
   align-items: flex-start;
+
   justify-content: space-between;
 
   .game-area {
-    text-align: center;
+    .inputs {
+      > div {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          font-size: 30px;
+          margin-right: 15px;
+          font-weight: bold;
+        }
+      }
+      .disabled-inputs {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      input {
+        margin: 0 5px;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        font-size: 60px;
+        caret-color: var(--primary-color);
+        background-color: white;
+        border: none;
+        border-bottom: 3px solid #333;
+        &:focus {
+          outline-color: #ccc;
+        }
+        &.yes-in-place {
+          background-color: #f89e13;
+          border: #f89e13;
+          color: white;
+        }
+        &.not-in-place {
+          background-color: #18ba89;
+          border: #18ba89;
+          color: white;
+        }
+        &.no {
+          background-color: #27303f;
+          border: #27303f;
+          color: white;
+        }
+      }
+    }
   }
   .key-colors {
     .key-color {
