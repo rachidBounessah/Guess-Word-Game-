@@ -74,6 +74,44 @@ h1 {
         }
       }
     }
+    .control {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 500px;
+      margin: 30px auto;
+      gap: 10px;
+
+      .check {
+        background-color: var(--primary-color);
+        flex: 1;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .hint {
+        background-color: #009688;
+        width: fit-content;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      button {
+        border: none;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 25px;
+        padding: 15px 20px;
+        transition: 0.3s;
+      }
+      button:disabled {
+        background-color: black;
+        opacity: 0.4;
+        cursor: no-drop;
+      }
+    }
   }
   .key-colors {
     .key-color {
