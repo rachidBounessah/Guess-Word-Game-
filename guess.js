@@ -12,6 +12,20 @@ let numbersOfTries = 6;
 let numbersOfLetters = 6;
 let currentTry = 1;
 
+//Mange Words
+let wordToGuess = "";
+const words = [
+  "Create",
+  "Update",
+  "Delete",
+  "Master",
+  "Branch",
+  "Mainly",
+  "Elzero",
+  "School",
+];
+wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase();
+
 const generateInput = () => {
   const inputContainer = document.querySelector(".inputs");
   //create main tryDiv
@@ -73,6 +87,33 @@ const generateInput = () => {
     });
   });
 };
+
+const guessButton = document.querySelector(".check");
+guessButton.addEventListener("click", handleGuesses);
+console.log(wordToGuess);
+function handleGuesses() {
+  let successGeuss = true;
+  for (let i = 1; i <= numbersOfLetters; i++) {
+    const inputField = document.querySelector(
+      `#guess-${currentTry}-letter-${i}`
+    );
+    const letter = inputField.value.toLowerCase();
+    const actualLetter = wordToGuess[i - 1];
+
+    //Game Logic
+    if (actualLetter === letter) {
+      //Letter Is Correct And In Place
+      inputField.classList.add("yes-in-place");
+    } else if (wordToGuess.includes(letter) && letter !== "") {
+      //Letter Is Correct And Not In Place
+      inputField.classList.add("not-in-place");
+      successGeuss = false;
+    } else {
+      inputField.classList.add("no");
+      successGeuss = false;
+    }
+  }
+}
 
 window.onload = () => {
   generateInput();
