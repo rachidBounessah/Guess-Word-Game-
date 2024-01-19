@@ -143,6 +143,23 @@ h1 {
       }
     }
   }
+
+  .message {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    span {
+      font-weight: bold;
+      display: block;
+      font-size: 50px;
+      color: var(--primary-color);
+      text-transform: capitalize;
+      margin-top: 10px;
+    }
+    p {
+      margin-top: 15px;
+    }
+  }
 }
 
 footer {
