@@ -91,6 +91,7 @@ const generateInput = () => {
 const guessButton = document.querySelector(".check");
 guessButton.addEventListener("click", handleGuesses);
 console.log(wordToGuess);
+
 function handleGuesses() {
   let successGeuss = true;
   for (let i = 1; i <= numbersOfLetters; i++) {
@@ -113,6 +114,7 @@ function handleGuesses() {
       successGeuss = false;
     }
   }
+
   //Check if user win or lose
   if (successGeuss) {
     messageArea.innerHTML = `You Win The World Is <span> ${wordToGuess}</span>`;
@@ -123,7 +125,34 @@ function handleGuesses() {
     });
     guessButton.disabled = true;
   } else {
-    console.log("you lose");
+    document
+      .querySelector(`.try-${currentTry}`)
+      .classList.add("disabled-inputs");
+    const cuurentTryInputs = document.querySelectorAll(
+      `.try-${currentTry} input`
+    );
+    cuurentTryInputs.forEach((input) => {
+      input.disabled = true;
+    });
+
+    currentTry++;
+
+    const nextTryInputs = document.querySelectorAll(`.try-${currentTry} input`);
+    nextTryInputs.forEach((input) => {
+      input.disabled = false;
+    });
+
+    let el = document.querySelector(`.try-${currentTry}`);
+    if (el) {
+      document
+        .querySelector(`.try-${currentTry}`)
+        .classList.remove("disabled-inputs");
+      el.children[1].focus();
+    } else {
+      // Disable Guess Button
+      guessButton.disabled = true;
+      messageArea.innerHTML = `You Lose The Word Is <span>${wordToGuess}</span>`;
+    }
   }
 }
 
