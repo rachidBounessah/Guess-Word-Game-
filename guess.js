@@ -153,12 +153,16 @@ function handleGuesses() {
   //Check if user win or lose
   if (successGeuss) {
     messageArea.innerHTML = `You Win The World Is <span> ${wordToGuess}</span>`;
+    if (numberOfHints === 2) {
+      messageArea.innerHTML = `<p>Congratz You Didn't Use Hints</p>`;
+    }
     //Add Disabled Class On All Try Div
     let allTries = document.querySelectorAll(".inputs > div");
     allTries.forEach((tryDiv) => {
       tryDiv.classList.add("disabled-inputs");
     });
     guessButton.disabled = true;
+    getHintButton.disabled = true;
   } else {
     document
       .querySelector(`.try-${currentTry}`)
@@ -185,11 +189,26 @@ function handleGuesses() {
       el.children[1].focus();
     } else {
       // Disable Guess Button
+      getHintButton.disabled = true;
       guessButton.disabled = true;
       messageArea.innerHTML = `You Lose The Word Is <span>${wordToGuess}</span>`;
     }
   }
 }
+
+function handleBackspace(event) {
+  if (event.key === "Backspace") {
+    const inputs = document.querySelectorAll("input:not([disabled])");
+    const currentIndex = Array.from(inputs).indexOf(document.activeElement);
+    if (currentIndex > 0) {
+      const currentInput = inputs[currentIndex];
+      const prevInput = inputs[currentIndex - 1];
+      currentInput.value = "";
+      prevInput.focus();
+    }
+  }
+}
+document.addEventListener("keydown", handleBackspace);
 
 window.onload = () => {
   generateInput();
